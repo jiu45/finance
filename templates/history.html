@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="text-start">Symbol</th>
+                <th class="text-end">Shares</th>
+                <th class="text-end">Price</th>
+                <th class="text-end">Transacted</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for command in commands %}
+                {% if command.shares_change > 0 %}
+                    <tr class="table-success">
+                        <td class="text-start">{{ command.symbol }}</td>
+                        <td class="text-end">{{ command.shares_change }}</td>
+                        <td class="text-end">$ {{ command.price }}</td>
+                        <td class="text-end">{{ command.transacted }}</td>
+                    </tr>
+                {% else %}
+                    <tr class="table-danger">
+                        <td class="text-start">{{ command.symbol }}</td>
+                        <td class="text-end">{{ command.shares_change }}</td>
+                        <td class="text-end">$ {{ command.price }}</td>
+                        <td class="text-end">{{ command.transacted }}</td>
+                    </tr>
+                {% endif %}
+
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
